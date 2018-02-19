@@ -3,13 +3,15 @@ Template.hello.onCreated(function () {
 });
 
 Template.hello.helpers({
-  counter: function () {
-    return Template.instance().counter.get();
+  leaderboard: function () {
+    return Clicks.find({}, {"sort":{"amnt":1}}).fetch();
   },
 });
 
 Template.hello.events({
   'click button': function (e, t) {
-    t.counter.set(t.counter.get() + 1);
+    name = $(e.currentTarget).text();
+    if(!Clicks.findOne({"name":name})) Clicks.insert({"name":name, "amnt":0});
+    Clicks.update({_id:Clicks.findOne({"name":name})._id}, {$inc:{"amnt":0}});
   },
 });
