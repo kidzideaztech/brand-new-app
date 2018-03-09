@@ -1,5 +1,5 @@
 Template.home.helpers({
-  leaderboard: function () {
+  clicks: function () {
     return Clicks.find({}, {"sort":{"amnt":1}}).fetch();
   },
 });
