@@ -1,6 +1,6 @@
 Template.home.helpers({
   clicks: function () {
-    return Clicks.find({}, {"sort":{"amnt":1}}).fetch();
+    return Clicks.find({}, {"sort":{"amnt":-1}})
   },
 });
 
